@@ -1,0 +1,10 @@
+@startuml
+DefaultLifecycleProcessor -> WebServerGracefulShutdownLifecycle: stop()
+WebServerGracefulShutdownLifecycle -> JettyWebServer: shutDownGracefully()
+JettyWebServer -> GracefulShutdown: shutDownGracefully()
+GracefulShutdown -> GracefulShutdown: (1)shutdown connectors
+GracefulShutdown -> GracefulShutdown: (2)await shutdown
+GracefulShutdown --> JettyWebServer
+JettyWebServer --> WebServerGracefulShutdownLifecycle
+WebServerGracefulShutdownLifecycle --> DefaultLifecycleProcessor
+@enduml
