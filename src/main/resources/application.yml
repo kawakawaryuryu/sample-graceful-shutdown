@@ -4,3 +4,12 @@ spring:
 
 server:
   shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: shutdown
+  endpoint:
+    shutdown:
+      enabled: true
